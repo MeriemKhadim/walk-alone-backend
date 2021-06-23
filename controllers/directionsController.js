@@ -8,7 +8,7 @@ const request = require('request');
 const url = "https://maps.googleapis.com/maps/api/directions/json?origin=Disneyland&destination=Universal+Studios+Hollywood&mode=walking&language=fr-FR&key=AIzaSyBz6IDkIKhoUZeqGTurdyjhrv9T71wEInI";
 const url1 = "https://maps.googleapis.com/maps/api/directions/json?origin=";
 const url2 ="&destination=";
-const url3 = "&mode=walking&language=fr-FR&key=AIzaSyBz6IDkIKhoUZeqGTurdyjhrv9T71wEInI";
+const url3 = "&mode=walking&language=fr-FR&key=AIzaSyDaVr4sWtVMkvUoKyfq0jF2yPRee4Ez4xw";
 
 const getDirections = async (req, res, next) => {
     

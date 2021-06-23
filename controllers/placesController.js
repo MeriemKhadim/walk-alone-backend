@@ -16,7 +16,7 @@ var resu = ourQuery.split(" ");
 //convert the array into a string linked with + signs
 let str2=resu.join("+")+'+marrakech'
 let str1='https://maps.googleapis.com/maps/api/place/textsearch/json?query='
-let str3='&key=AIzaSyBz6IDkIKhoUZeqGTurdyjhrv9T71wEInI'
+let str3='&key=AIzaSyDaVr4sWtVMkvUoKyfq0jF2yPRee4Ez4xw'
 //create the query we are going to send to our google places api
  let Q=str1 +str2 +str3;
 //make an async request to the api
