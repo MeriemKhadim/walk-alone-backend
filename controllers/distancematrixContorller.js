@@ -41,11 +41,11 @@ const getDistanceDuration = async (req, res, next) => {
         const data = await trip.get();
         const array = data.data();
         console.log(array)
-        const DestinationLat = array.steps[nextStepId].start_location.lat;
-        const DestinationLng = array.steps[nextStepId].start_location.lng;
-        const DestinationFinalLat = array.start_location.lat;
-        const DestinationFinalLng = array.start_location.lng;
-        const maneuver = array.steps[nextStepId].maneuver;
+        const DestinationLat = array.steps[nextStepId].end_location.lat;
+        const DestinationLng = array.steps[nextStepId].end_location.lng;
+        const DestinationFinalLat = array.end_location.lat;
+        const DestinationFinalLng = array.end_location.lng;
+        const maneuver = array.steps[nextStepId+1].maneuver;
         const urlFinal = urlFirst+originLat+","+originLng+"&destinations="+DestinationLat+","+DestinationLng+urlEnd;
         const urlFinal2 = urlFirst+originLat+","+originLng+"&destinations="+DestinationFinalLat+","+DestinationFinalLng+urlEnd;
         const response = await axios.get(urlFinal);
@@ -60,7 +60,7 @@ const getDistanceDuration = async (req, res, next) => {
         const distanceValueToEnd = response2.data.rows[0].elements[0].distance.value;
         const durationValueToEnd = response2.data.rows[0].elements[0].duration.value;
         let change = false;
-        if (durationValue<=30) change = true;
+        if (ditanceValue<=1) change = true;
         
         const dMatrix = new DistanceMatrix(durationText,durationValue,ditanceText,ditanceValue,change,maneuver,distanceTextToEnd,durationTextToEnd,distanceValueToEnd,durationValueToEnd);
         res.send(dMatrix);
