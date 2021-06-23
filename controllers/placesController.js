@@ -10,8 +10,13 @@ let getPlaces = async (req, res, next) => {
 //let query = url.parse(req.url, true).query
 //get the location from the query
 let ourQuery = req.params.name;
+
+console.log(ourQuery);
 let addresses=[]
 //convert the location string into an array
+ourQuery = ourQuery.replace("é", "e");
+ourQuery = ourQuery.replace("è", "e");
+ourQuery = ourQuery.replace("à", "a");
 var resu = ourQuery.split(" ");
 //convert the array into a string linked with + signs
 let str2=resu.join("+")+'+marrakech'
@@ -37,7 +42,7 @@ let str3='&key=AIzaSyDaVr4sWtVMkvUoKyfq0jF2yPRee4Ez4xw'
         res.json(addresses);
         
     } catch (error) {
-        console.log(error.response.body);
+        console.log(error);
       }
 }
 module.exports = {

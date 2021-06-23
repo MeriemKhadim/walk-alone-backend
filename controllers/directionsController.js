@@ -23,26 +23,34 @@ const getDirections = async (req, res, next) => {
         let origin = respon.data.results[0].formatted_address;
         origin = origin.replace("é", "e");
         origin = origin.replace("è", "e");
+        origin = origin.replace("à", "a");
+        destination = destination.replace("é", "e");
+        destination = destination.replace("è", "e");
+        destination = destination.replace("à", "a");
+
         var res1 = origin.split(" ");
         var res2 = destination.split(" ");
         origin = res1.join("+");
         destination = res2.join("+");
         let URLCON = url1 + origin + url2 + destination + url3;
-        
+        console.log("des "+destination);
+        console.log("URLCON "+ URLCON);
+        URLCON = URLCON.replace("،", "");
         const response = await axios.get(URLCON);
-        let results = response.data.routes[0].legs[0].steps;
+        let results = response.data.routes[0].legs[0];
         let durationValue = response.data.routes[0].legs[0].duration.value;
         let distanceValue = response.data.routes[0].legs[0].distance.value;
         let nbrSteps = results.steps.length;
+        console.log("nbr steps"+nbrSteps);
         const doc = await firestore.collection('steps').doc();
         doc.set(Object.assign({}, results))
         .then(() => {
             const direction = new Directions(doc.id,nbrSteps,distanceValue,durationValue);
-            console.log({direction});
             res.send(direction);
             
         });
     } catch (error) {
+        console.log("dkhel l error"+error);
         res.status(400).send(error.message);   
     }
 }

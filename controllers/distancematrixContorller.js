@@ -19,6 +19,7 @@ const getTester = async (req, res, next) => {
         const trip = await firestore.collection('steps').doc(id);
         const data = await trip.get();
         const array = data.data();
+        console.log(array);
         const DestinationLat = array.steps[nextStepId].start_location.lat;
         
         res.send(DestinationLat);
@@ -34,11 +35,12 @@ const getDistanceDuration = async (req, res, next) => {
         let originLat = req.body.originLat;
         let originLng = req.body.originLng;
         let nextStepId = req.body.nextStepId;
-        let tripId = req.body.tripId;
+        let tripId = req.body.id;
 
         const trip = await firestore.collection('steps').doc(tripId);
         const data = await trip.get();
         const array = data.data();
+        console.log(array)
         const DestinationLat = array.steps[nextStepId].start_location.lat;
         const DestinationLng = array.steps[nextStepId].start_location.lng;
         const DestinationFinalLat = array.start_location.lat;
