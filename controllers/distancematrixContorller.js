@@ -5,7 +5,7 @@ const firestore = firebase.firestore();
 const DistanceMatrix = require('../models/distancematrix');
 const request = require('request');
 const urlFirst = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=";
-const urlEnd = "&mode=walking&language=fr-FR&key=AIzaSyBz6IDkIKhoUZeqGTurdyjhrv9T71wEInI";
+const urlEnd = "&mode=walking&language=fr-FR&key=AIzaSyDaVr4sWtVMkvUoKyfq0jF2yPRee4Ez4xw";
 
 const getTester = async (req, res, next) => {
     

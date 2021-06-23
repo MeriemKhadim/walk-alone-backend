@@ -26,12 +26,12 @@ const getDirections = async (req, res, next) => {
         origin = res1.join("+");
         destination = res2.join("+");
         let URLCON = url1 + origin + url2 + destination + url3;
-        console.log(URLCON);
+        
         const response = await axios.get(URLCON);
         let results = response.data.routes[0].legs[0];
         let durationValue = response.data.routes[0].legs[0].duration.value;
         let distanceValue = response.data.routes[0].legs[0].distance.value;
-        let nbrSteps = results.length;
+        let nbrSteps = results.steps.length;
         const doc = await firestore.collection('steps').doc();
         doc.set(Object.assign({}, results))
         .then(() => {
